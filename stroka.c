@@ -1,35 +1,43 @@
-//подсчитать сколько раз слово W встречается в предложении P
-
 #include<stdio.h>
-#include<conio.h>
 #include<string.h>
+#include<stdlib.h>
+
+#define MAX_LEN 80
 
 int main()
 {
-    char *s = calloc (1, sizeof(char));
-    char *w = calloc (1, sizeof(char));
-    char *ptr = calloc (1, sizeof(char))
-    int k=0;
-    
+    char *s = calloc(MAX_LEN, sizeof(char));
+    char *w = calloc(MAX_LEN, sizeof(char));
+    if(s == NULL)
+    {
+        fprintf(stderr, "Error memory allocate\n");
+        return -1;
+    }
+    if(w == NULL)
+    {
+        fprintf(stderr, "Error memory allocate\n");
+        return -1;
+    }
+
     puts("Enter a string:" );
-    gets(s);
+    fgets(s, MAX_LEN, stdin);
     puts("Enter a world:" );
-    gets(w);
-    
-    ptr=strtok(s," ");
+    fgets(w, MAX_LEN, stdin);
+
+    char *ptr = strtok(s," ");
+    int k = 0;
     while (ptr)
     {
-        if(strcmp(ptr,w)==0)
+        if(strcmp(ptr,w) == 0)
         {
             k++;
         }
-        ptr=strtok(NULL," ");  
-
+        ptr = strtok(NULL," ");
     }
     printf("Number of repeats:%d",k);
-    
+
     free(ptr);
     free(w);
     free(s);
-    return 0; 
+    return 0;
 }
